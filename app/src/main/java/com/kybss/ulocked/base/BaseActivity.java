@@ -27,6 +27,8 @@ public abstract class BaseActivity<UC> extends CoreActivity<UC> {
     @BindView(R.id.toolbar)
     Toolbar mToolbar;
 
+
+    /////
     private LoadingDialog mLoading;
     private Unbinder mUnBinder;
     @Override
