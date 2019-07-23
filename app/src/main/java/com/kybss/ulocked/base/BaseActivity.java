@@ -28,7 +28,6 @@ public abstract class BaseActivity<UC> extends CoreActivity<UC> {
     Toolbar mToolbar;
 
 
-    /////
     private LoadingDialog mLoading;
     private Unbinder mUnBinder;
     @Override
