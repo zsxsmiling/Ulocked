@@ -1,0 +1,14 @@
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context="cn.hebut.toolbar2.MainActivity">
+
+
+
+
+    <item
+        android:id="@+id/menu_setting"
+        android:icon="@drawable/setting2"
+        android:title="退出"
+        app:showAsAction="always"/>
+</menu>

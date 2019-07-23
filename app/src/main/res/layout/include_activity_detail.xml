@@ -1,0 +1,146 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_marginLeft="20dp"
+    android:layout_marginRight="20dp"
+    android:layout_height="wrap_content">
+
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_marginTop="10dp"
+        >
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="#00000000"
+            android:text="申请人  ："
+            android:textSize="20sp" />
+        <EditText
+            android:id="@+id/edit_user"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:enabled="false"
+            android:textSize="20sp" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:layout_marginTop="10dp"
+        >
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="#00000000"
+            android:text="申请理由  ："
+            android:textSize="20sp" />
+
+        <EditText
+            android:layout_marginTop="10dp"
+            android:id="@+id/edit_theme"
+            android:enabled="false"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:minLines="2"
+            android:maxLines="2"
+            android:textSize="20sp" />
+    </LinearLayout>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="#00000000"
+        android:text="预定开始时间"
+        android:layout_marginTop="10dp"
+        android:textSize="20sp" />
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="center_horizontal"
+        android:layout_marginTop="10dp"
+        >
+        <TextView
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="wrap_content"
+            android:background="#00000000"
+            android:text="日期"
+            android:textSize="18sp" />
+        <EditText
+            android:id="@+id/edit_start_date"
+            android:layout_width="0dp"
+            android:layout_weight="3"
+            android:enabled="false"
+            android:layout_height="wrap_content"
+            android:textSize="18sp" />
+        <TextView
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="wrap_content"
+            android:background="#00000000"
+            android:text="时间"
+            android:textSize="18sp" />
+        <EditText
+            android:id="@+id/edit_start_time"
+            android:layout_width="0dp"
+            android:layout_weight="3"
+            android:enabled="false"
+            android:layout_height="wrap_content"
+            android:textSize="18sp" />
+    </LinearLayout>
+
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="#00000000"
+        android:text="预定结束时间"
+        android:layout_marginTop="10dp"
+        android:textSize="20sp" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="center_horizontal"
+        android:layout_marginTop="10dp"
+        >
+        <TextView
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="wrap_content"
+            android:background="#00000000"
+            android:text="日期"
+            android:textSize="18sp" />
+        <EditText
+            android:id="@+id/edit_end_date"
+            android:layout_width="0dp"
+            android:layout_weight="3"
+            android:enabled="false"
+            android:layout_height="wrap_content"
+            android:textSize="18sp" />
+        <TextView
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="wrap_content"
+            android:background="#00000000"
+            android:text="时间"
+            android:textSize="18sp" />
+        <EditText
+            android:id="@+id/edit_end_time"
+            android:layout_width="0dp"
+            android:layout_weight="3"
+            android:enabled="false"
+            android:layout_height="wrap_content"
+            android:textSize="18sp" />
+    </LinearLayout>
+
+
+</LinearLayout>

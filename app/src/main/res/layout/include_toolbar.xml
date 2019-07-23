@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<merge
+
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <android.support.v7.widget.Toolbar
+        android:id="@+id/toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize"
+        android:background="@color/maincolor"
+        android:backgroundTint="@color/maincolor"
+        app:subtitleTextColor="#fff"
+        app:logo="@drawable/ic_logo"
+        app:titleTextColor="#fff">
+    </android.support.v7.widget.Toolbar>
+</merge>

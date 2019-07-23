@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@color/dark_gray_bg">
+
+    <android.support.v7.widget.CardView
+        android:id="@+id/cardView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="5dp"
+        app:cardBackgroundColor="@color/white"
+        app:cardCornerRadius="8dp"
+        app:cardElevation="8dp">
+
+        <RelativeLayout
+            android:id="@+id/activity_item"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:padding="24dp">
+
+
+
+
+
+
+
+
+
+            <ImageView
+                android:id="@+id/item_activity_location_icon"
+                android:layout_width="20dp"
+                android:layout_height="20dp"
+                android:layout_below="@+id/item_activity_time_icon"
+                android:layout_marginTop="10dp"
+                android:gravity="center"
+                android:src="@drawable/ic_location" />
+
+            <TextView
+                android:id="@+id/item_activity_location"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/item_activity_time"
+                android:layout_marginLeft="10dp"
+                android:layout_marginTop="10dp"
+                android:layout_toRightOf="@+id/item_activity_location_icon"
+                android:text="@string/door_number"
+                android:textColor="#5b5d5c"
+                android:textSize="14dp" />
+
+            <ImageButton
+                android:visibility="gone"
+                android:id="@+id/west_door_btn"
+                android:layout_width="60dp"
+                android:layout_height="55dp"
+                android:layout_below="@+id/show_door_state"
+                android:layout_alignParentRight="true"
+                android:background="@drawable/ic_west_door" />
+
+            <ImageButton
+                android:visibility="gone"
+                android:id="@+id/east_door_btn"
+                android:layout_width="60dp"
+                android:layout_height="55dp"
+                android:layout_marginRight="2dp"
+                android:layout_below="@+id/show_door_state"
+                android:layout_toLeftOf="@+id/west_door_btn"
+                android:background="@drawable/ic_east_door" />
+
+
+
+
+        </RelativeLayout>
+    </android.support.v7.widget.CardView>
+</LinearLayout>

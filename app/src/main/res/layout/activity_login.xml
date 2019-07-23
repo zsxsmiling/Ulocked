@@ -1,0 +1,189 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:fitsSystemWindows="true"
+    android:background="@drawable/background" >
+    <include layout="@layout/include_toolbar" />
+
+    
+
+    
+    <RelativeLayout
+        android:id="@+id/rela_stu_id"
+        android:layout_gravity="center_horizontal"
+        android:layout_below="@+id/toolbar"
+        android:layout_marginRight="40dp"
+        android:layout_marginLeft="40dp"
+        android:layout_marginTop="30dp"
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:background="@drawable/bg_border_color_black">
+        <ImageView
+            android:layout_centerVertical="true"
+            android:layout_alignParentLeft="true"
+            android:layout_width="25dp"
+            android:layout_height="25dp"
+            android:layout_marginLeft="15dp"
+            android:src="@drawable/ic_user_code"
+            android:id="@+id/stu_id_img" />
+
+        <com.kybss.ulocked.util.EditTextWithDel
+            android:id="@+id/stu_id_edit"
+            android:layout_width="match_parent"
+            android:textColor="#ffffff"
+            android:inputType="number"
+            android:layout_height="match_parent"
+            android:layout_marginLeft="10dp"
+            android:textColorHint="#ffffff"
+            android:hint="请输入您的学号（工号）"
+            android:textSize="13sp"
+            android:background="@null"
+            android:layout_marginRight="10dp"
+            android:layout_centerVertical="true"
+            android:layout_toEndOf="@+id/stu_id_img"
+            android:layout_toRightOf="@+id/stu_id_img"/>
+    </RelativeLayout>
+    
+    <RelativeLayout
+        android:id="@+id/rela_pass"
+          android:layout_below="@+id/rela_stu_id"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginRight="40dp"
+        android:layout_marginLeft="40dp"
+        android:layout_marginTop="20dp"
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:background="@drawable/bg_border_color_black"
+        >
+        <ImageView
+            android:layout_centerVertical="true"
+            android:layout_alignParentLeft="true"
+            android:layout_width="28dp"
+            android:layout_height="28dp"
+            android:layout_marginLeft="15dp"
+            android:src="@drawable/ic_user_psw"
+            android:id="@+id/pass_img" />
+
+        <com.kybss.ulocked.util.EditTextWithDel
+            android:id="@+id/pass_edit"
+            android:layout_width="match_parent"
+            android:textColor="#ffffff"
+            android:layout_height="match_parent"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            android:hint="请输入您的密码"
+            android:inputType="textPassword"
+            android:textColorHint="#ffffff"
+            android:textSize="13sp"
+            android:background="@null"
+            android:layout_centerVertical="true"
+            android:layout_toEndOf="@+id/pass_img"
+            android:layout_toRightOf="@+id/pass_img"/>
+    </RelativeLayout>
+
+     <Button
+         android:id="@+id/bt_login"
+         android:layout_width="match_parent"
+         android:layout_height="40dp"
+         android:layout_below="@+id/rela_pass"
+         android:layout_gravity="center_horizontal"
+         android:layout_marginLeft="40dp"
+         android:layout_marginRight="40dp"
+         android:layout_marginTop="120dp"
+         android:background="@drawable/btn_login_style"
+         android:gravity="center"
+         android:text="登录"
+         android:textColor="#ffffff"
+         android:textSize="15sp" />
+
+    <Button
+        android:id="@+id/gotoreg"
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:layout_below="@+id/bt_login"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginLeft="40dp"
+        android:layout_marginRight="40dp"
+        android:layout_marginTop="20dp"
+        android:background="@drawable/btn_login_style"
+        android:gravity="center"
+        android:text="注册"
+        android:textColor="#ffffff"
+        android:textSize="15sp" />
+
+  <!--    <RelativeLayout
+            android:id="@+id/login_bottom"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_below="@+id/bt_login">
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_marginTop="20dp"
+            android:gravity="center_horizontal"
+            android:layout_height="wrap_content">
+            <View
+                android:layout_gravity="center_vertical"
+                android:layout_width="100dp"
+                android:background="#ffffff"
+                android:layout_marginRight="20dp"
+                android:layout_height="1px"/>
+
+            <TextView
+                android:id="@+id/gotoreg"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:text="没有账号？现在注册"
+                android:textColor="#ffffff"
+                android:textSize="15sp" />
+
+            <View
+                android:layout_gravity="center_vertical"
+                android:layout_width="100dp"
+                android:layout_marginLeft="20dp"
+                android:background="#ffffff"
+                android:layout_height="1px"/>
+
+          </LinearLayout>
+      </RelativeLayout>-->
+        
+       
+      <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_alignParentBottom="true"
+            android:layout_marginBottom="15dp"
+            android:layout_marginLeft="40dp"
+            android:layout_marginRight="40dp"
+            android:orientation="vertical"
+            android:layout_height="wrap_content">
+
+            <ImageView
+                android:id="@+id/ghhouse"
+                android:layout_centerHorizontal="true"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:src="@drawable/logo" />
+		    <View
+		        android:id="@+id/line3"
+		        android:layout_below="@+id/ghhouse"
+		        android:layout_width="match_parent"
+		        android:layout_height="1px"
+		        android:layout_marginRight="17dp"
+		        android:layout_marginLeft="17dp"
+		        android:background="#ffffff"/>
+		    <TextView 
+		        android:layout_centerHorizontal="true"
+		        android:layout_below="@+id/line3"
+		        android:layout_marginTop="10dp"
+		        android:layout_width="wrap_content"
+		        android:layout_height="wrap_content"
+		        android:text="by  夏令营小团队"
+		        />
+       
+       </RelativeLayout> 
+
+</RelativeLayout>
+

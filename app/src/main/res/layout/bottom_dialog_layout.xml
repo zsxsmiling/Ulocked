@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        >
+
+        <LinearLayout
+                android:layout_width="match_parent"
+                android:background="#CC000000"
+                android:orientation="vertical"
+                android:layout_height="wrap_content"
+                >
+
+                <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:textColor="@android:color/white"
+                        android:gravity="center"
+                        android:padding="11dp"
+                        android:text="操作菜单"
+                        android:textSize="13sp"
+                        android:layout_centerHorizontal="true"
+                        />
+
+                <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_alignParentBottom="true"
+                        android:layout_height="80dp"
+                        >
+
+                        <RelativeLayout
+                                android:layout_width="0dp"
+                                android:layout_height="match_parent"
+                                android:id="@+id/mRlScan"
+                                android:layout_weight="1"
+                                >
+
+                                <ImageView
+                                        android:layout_width="35dp"
+                                        android:layout_height="35dp"
+                                        android:layout_centerHorizontal="true"
+                                        android:src="@drawable/ic_fullscreen_black_24dp"
+                                        />
+
+                                <TextView
+                                        android:textSize="13sp"
+                                        android:gravity="center"
+                                        android:textColor="#CCFFFFFF"
+                                        android:layout_width="match_parent"
+                                        android:layout_height="wrap_content"
+                                        android:layout_alignParentBottom="true"
+                                        android:layout_marginBottom="17dp"
+                                        android:text="扫描"
+                                        />
+                        </RelativeLayout>
+
+                        <RelativeLayout
+                                android:layout_width="0dp"
+                                android:layout_height="match_parent"
+                                android:id="@+id/mRlLoc"
+                                android:layout_weight="1"
+                                >
+
+                                <ImageView
+                                        android:layout_width="35dp"
+                                        android:layout_height="35dp"
+                                        android:layout_centerHorizontal="true"
+                                        android:src="@drawable/ic_my_location_black_24dp"
+                                        />
+
+                                <TextView
+                                        android:textSize="13sp"
+                                        android:gravity="center"
+                                        android:textColor="#CCFFFFFF"
+                                        android:layout_width="match_parent"
+                                        android:layout_height="wrap_content"
+                                        android:layout_alignParentBottom="true"
+                                        android:layout_marginBottom="17dp"
+                                        android:text="位置"
+                                        />
+                        </RelativeLayout>
+
+
+                </LinearLayout>
+
+        </LinearLayout>
+</FrameLayout>

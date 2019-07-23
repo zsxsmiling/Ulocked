@@ -1,0 +1,186 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="@drawable/background"
+    >
+    <include layout="@layout/include_toolbar" />
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingTop="@dimen/spacing_major"
+        android:paddingBottom="@dimen/spacing_major"
+        android:gravity="center_vertical"
+        >
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:text="@string/label_step_one"
+            android:textSize="@dimen/font_normal"
+            android:textColor="?attr/colorAccent"
+            />
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/ic_arrow_right"
+            />
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:text="@string/label_step_tow"
+            android:textSize="@dimen/font_normal"
+            android:textColor="@color/secondary_text"
+            />
+
+
+    </LinearLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/divider_size"
+        android:background="@color/divider"
+        />
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/divider_size"
+        android:background="@color/divider"
+        />
+
+    <RelativeLayout
+        android:id="@+id/user_phone_layout"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginRight="40dp"
+        android:layout_marginLeft="40dp"
+        android:layout_marginTop="10dp"
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:background="@drawable/bg_border_color_black"
+        >
+        <ImageView
+            android:layout_centerVertical="true"
+            android:layout_alignParentLeft="true"
+            android:layout_width="28dp"
+            android:layout_height="28dp"
+            android:layout_marginLeft="15dp"
+            android:src="@drawable/login_name"
+            android:id="@+id/phoneicon" />
+
+        <com.kybss.ulocked.util.EditTextWithDel
+            android:id="@+id/edit_mobile"
+            android:layout_width="match_parent"
+            android:textColor="#ffffff"
+            android:layout_height="match_parent"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            android:hint="@string/hint_edit_phone"
+            android:inputType="number"
+            android:textColorHint="#ffffff"
+            android:textSize="13sp"
+            android:background="@null"
+            android:layout_centerVertical="true"
+            android:layout_toEndOf="@+id/phoneicon"
+            android:layout_toRightOf="@+id/phoneicon"
+            />
+    </RelativeLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:orientation="horizontal"
+        android:layout_marginRight="40dp"
+        android:layout_marginLeft="40dp"
+        android:layout_marginTop="10dp">
+        <RelativeLayout
+            android:id="@+id/user_code_layout"
+            android:layout_gravity="center_horizontal"
+            android:layout_width="0dp"
+            android:layout_weight="3"
+            android:layout_height="40dp"
+            android:background="@drawable/bg_border_color_black"
+            >
+            <ImageView
+                android:layout_centerVertical="true"
+                android:layout_alignParentLeft="true"
+                android:layout_width="28dp"
+                android:layout_height="28dp"
+                android:layout_marginLeft="15dp"
+                android:src="@drawable/login_password"
+                android:id="@+id/codeicon" />
+
+            <com.kybss.ulocked.util.EditTextWithDel
+                android:id="@+id/edit_code"
+                android:layout_width="match_parent"
+                android:textColor="#ffffff"
+                android:layout_height="match_parent"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
+                android:hint="@string/hint_edit_code"
+                android:inputType="number"
+                android:textColorHint="#ffffff"
+                android:textSize="13sp"
+                android:background="@null"
+                android:layout_centerVertical="true"
+                android:layout_toEndOf="@+id/codeicon"
+                android:layout_toRightOf="@+id/codeicon"
+                />
+        </RelativeLayout>
+        <com.kybss.ulocked.widget.CountDownTimerView
+            android:id="@+id/btn_send_code"
+            android:layout_gravity="center_horizontal"
+            android:layout_width="0dp"
+            android:layout_weight="2"
+            android:layout_marginLeft="10dp"
+            android:layout_height="40dp"
+            android:gravity="center"
+            android:textSize="13sp"
+            android:text="@string/btn_send_code"
+            android:background="@drawable/btn_login_style"
+            android:textColor="#ffffff"
+            />
+    </LinearLayout>
+
+    <Button
+        android:id="@+id/btn_submit_code"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginRight="40dp"
+        android:layout_marginLeft="40dp"
+        android:layout_marginTop="40dp"
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:gravity="center"
+        android:textSize="13sp"
+        android:text="@string/btn_submit_code"
+        android:background="@drawable/btn_login_style"
+        android:textColor="#ffffff"
+        />
+
+    <Button
+        android:id="@+id/btn_test"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginRight="40dp"
+        android:layout_marginLeft="40dp"
+        android:layout_marginTop="40dp"
+        android:visibility="gone"
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:gravity="center"
+        android:textSize="13sp"
+        android:text="测试按钮"
+        android:background="@drawable/btn_login_style"
+        android:textColor="#ffffff"
+        />
+
+
+
+
+</LinearLayout>

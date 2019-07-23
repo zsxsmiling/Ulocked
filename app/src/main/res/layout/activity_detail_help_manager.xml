@@ -1,0 +1,212 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/login_group"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white"
+    android:orientation="vertical">
+
+
+    <LinearLayout
+        android:id="@+id/edit_name_group"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:padding="10dp"
+        android:layout_marginStart="28dp"
+        android:layout_marginEnd="28dp"
+        android:layout_marginTop="20dp"
+        android:gravity="center">
+
+        <ImageView
+            android:layout_width="20dp"
+            android:layout_height="20dp"
+            android:src="@drawable/ic_applyuser"
+            android:contentDescription="@null" />
+
+        <TextView
+            android:id="@+id/edit_name"
+            style="@style/style_circle_edit"
+            android:hint="帮助者姓名"
+            android:layout_marginStart="6dp"/>
+    </LinearLayout>
+    <View
+        android:id="@+id/edit_name_divider"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="@color/grey_divider"
+        android:layout_below="@+id/edit_name_group"
+        android:layout_marginStart="64dp"
+        android:layout_marginEnd="64dp" />
+
+    <LinearLayout
+        android:id="@+id/edit_theme_group"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:padding="10dp"
+        android:layout_marginStart="28dp"
+        android:layout_marginEnd="28dp"
+        android:layout_marginTop="10dp"
+        android:layout_below="@+id/edit_name_divider"
+        android:gravity="center">
+
+        <ImageView
+            android:layout_width="20dp"
+            android:layout_height="20dp"
+            android:src="@drawable/ic_topic"
+            android:contentDescription="@null" />
+
+        <TextView
+            android:id="@+id/edit_theme"
+            style="@style/style_circle_edit"
+            android:hint="帮助者理由"
+            android:layout_marginStart="6dp"/>
+    </LinearLayout>
+    <View
+        android:id="@+id/edit_theme_divider"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="@color/grey_divider"
+        android:layout_below="@+id/edit_theme_group"
+        android:layout_marginStart="64dp"
+        android:layout_marginEnd="64dp" />
+
+    <LinearLayout
+        android:id="@+id/edit_number_group"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:padding="10dp"
+        android:layout_marginStart="28dp"
+        android:layout_marginEnd="28dp"
+        android:layout_marginTop="10dp"
+        android:layout_below="@+id/edit_theme_divider"
+        android:gravity="center">
+
+        <ImageView
+            android:layout_width="20dp"
+            android:layout_height="20dp"
+            android:src="@drawable/ic_contact"
+            android:contentDescription="@null" />
+
+        <TextView
+            android:id="@+id/edit_contact"
+            style="@style/style_circle_edit"
+            android:hint="帮助者联系方式"
+            android:layout_marginStart="6dp"/>
+    </LinearLayout>
+    <View
+        android:id="@+id/edit_number_divider"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="@color/grey_divider"
+        android:layout_below="@+id/edit_number_group"
+        android:layout_marginStart="64dp"
+        android:layout_marginEnd="64dp" />
+
+    <TextView
+        android:id="@+id/start_time"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="#00000000"
+        android:text="申请时间"
+        android:textColor="@color/gray"
+        android:layout_marginTop="10dp"
+        android:textSize="18dp"
+        android:layout_marginStart="35dp"
+        android:layout_below="@+id/edit_number_divider"/>
+
+    <LinearLayout
+        android:id="@+id/edit_start_date_group"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:padding="10dp"
+        android:layout_marginStart="28dp"
+        android:layout_marginEnd="28dp"
+        android:layout_marginTop="10dp"
+        android:layout_below="@+id/start_time"
+        android:gravity="center">
+
+        <ImageView
+            android:layout_width="20dp"
+            android:layout_height="20dp"
+            android:src="@drawable/ic_data"
+            android:contentDescription="@null" />
+
+        <TextView
+            android:id="@+id/edit_start_date"
+            style="@style/style_circle_edit"
+            android:hint="申请日期"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="wrap_content"
+            android:enabled="false"/>
+
+        <ImageView
+            android:layout_width="20dp"
+            android:layout_height="20dp"
+            android:src="@drawable/ic_time_order"
+            android:contentDescription="@null" />
+
+        <TextView
+            android:id="@+id/edit_start_time"
+            style="@style/style_circle_edit"
+            android:hint="申请时间"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="wrap_content"
+            android:enabled="false"/>
+    </LinearLayout>
+    <View
+        android:id="@+id/edit_start_date_divider"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:enabled="false"
+        android:background="@color/grey_divider"
+        android:layout_below="@+id/edit_start_date_group"
+        android:layout_marginStart="64dp"
+        android:layout_marginEnd="64dp" />
+
+
+
+
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="match_parent"
+        android:orientation="horizontal"
+        android:layout_marginTop="20dp"
+        android:gravity="center_horizontal"
+        android:layout_below="@+id/edit_start_date_divider"
+        >
+        <Button
+            android:id="@+id/btn_approve"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="40dp"
+            android:background="@drawable/btn_login_style"
+            android:gravity="center"
+            android:text="允许"
+            android:textColor="#ffffff"
+            android:textSize="20sp" />
+
+        <Button
+            android:id="@+id/btn_refuse"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginRight="20dp"
+            android:background="@drawable/btn_login_style"
+            android:gravity="center"
+            android:text="拒绝"
+            android:textColor="#ffffff"
+            android:textSize="20sp" />
+    </LinearLayout>
+
+</RelativeLayout>

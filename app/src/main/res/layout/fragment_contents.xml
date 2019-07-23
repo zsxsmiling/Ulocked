@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/background">
+    <include layout="@layout/include_toolbar" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingTop="@dimen/spacing_major"
+        android:paddingBottom="@dimen/spacing_major"
+        android:gravity="center_vertical"
+        >
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:text="房间选择"
+            android:textSize="@dimen/font_normal"
+            android:textColor="?attr/colorAccent"
+            />
+
+
+
+
+
+
+    </LinearLayout>
+    <LinearLayout
+        android:layout_below="@+id/toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical" >
+
+        <Button
+            android:id="@+id/btn_qiangong"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginRight="40dp"
+            android:layout_marginLeft="40dp"
+            android:layout_marginTop="80dp"
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:gravity="center"
+            android:textSize="13sp"
+            android:text="前工院"
+            android:background="@drawable/btn_login_style"
+            android:textColor="#ffffff"
+            />
+        <Button
+            android:id="@+id/btn_dongnan"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginRight="40dp"
+            android:layout_marginLeft="40dp"
+            android:layout_marginTop="80dp"
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:gravity="center"
+            android:textSize="13sp"
+            android:text="东南院"
+            android:background="@drawable/btn_login_style"
+            android:textColor="#ffffff"
+            />
+        <Button
+            android:id="@+id/btn_zhongda"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginRight="40dp"
+            android:layout_marginLeft="40dp"
+            android:layout_marginTop="80dp"
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:gravity="center"
+            android:textSize="13sp"
+            android:text="中大院"
+            android:background="@drawable/btn_login_style"
+            android:textColor="#ffffff"
+            />
+
+    </LinearLayout>
+
+
+</LinearLayout>
