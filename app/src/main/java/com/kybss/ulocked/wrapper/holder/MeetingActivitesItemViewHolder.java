@@ -91,18 +91,20 @@ public class MeetingActivitesItemViewHolder extends BaseViewHolder<Meeting> {
         if(meeting.getResults().size()==0) mActivityLocationTxt.setText("此门暂未使用");
 
         mDoorStateTxt.setText(StringUtil.decodeStatus(meeting.getStatus()));
-        if(!meeting.getStatus().equals("1")){
+/*        if(!meeting.getStatus().equals("1")){
             mSpinner.setVisibility(View.INVISIBLE);
-        }
+        }*/
     }
 
     private void init_spinner(final Meeting meeting) {
        List<String> data_list = new ArrayList<String>();
        final List<Door> results = meeting.getResults();
-        data_list.add("门禁");
-       for(int i=0;i<results.size();i++){
-           data_list.add(StringUtil.descriptionToId(results.get(i).getDescription()));
-           Log.e("des",results.get(i).getDescription());
+       if(meeting.getStatus().equals("1")) {
+           data_list.add("门禁");
+           for (int i = 0; i < results.size(); i++) {
+               data_list.add(StringUtil.descriptionToId(results.get(i).getDescription()));
+               Log.e("des", results.get(i).getDescription());
+           }
        }
         ArrayAdapter<String> arr_adapter=
                 new ArrayAdapter<String>(getContext(), android.R.layout.simple_spinner_item, data_list);
