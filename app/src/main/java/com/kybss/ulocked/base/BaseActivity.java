@@ -25,6 +25,7 @@ public abstract class BaseActivity<UC> extends CoreActivity<UC> {
 
     @Nullable
     @BindView(R.id.toolbar)
+
     Toolbar mToolbar;
 
 
