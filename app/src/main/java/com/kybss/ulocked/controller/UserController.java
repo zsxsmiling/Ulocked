@@ -95,8 +95,8 @@ public class UserController extends BaseController<UserController.UserUi,
         if (user != null) {
             if(user.getRank() <= AppConfig.getAppRank())
             {
-            AppCookie.saveUserInfo(user);
-            AppCookie.saveLastPhone(user.getMobile());
+                AppCookie.saveUserInfo(user);
+                AppCookie.saveLastPhone(user.getMobile());
             }
             else {
                 AppCookie.saveUserInfo(null);
@@ -123,6 +123,9 @@ public class UserController extends BaseController<UserController.UserUi,
         }else if (ui instanceof UserRecordUi) {
             populateUserRecordUi((UserRecordUi) ui);
         }
+        else if (ui instanceof UserMessageUi) {
+            populateUserMessageUi((UserMessageUi) ui);
+        }
     }
 
     private void populateUserRecordUi(UserRecordUi ui) {
@@ -137,6 +140,11 @@ public class UserController extends BaseController<UserController.UserUi,
 
     private void populateUserCenterUi(UserCenterUi ui) {
         ui.showUserInfo(AppCookie.getUserInfo());
+    }
+
+
+    private void populateUserMessageUi(UserMessageUi ui) {
+        ui.showUserMessage(AppCookie.getUserInfo());
     }
 
 
@@ -172,6 +180,16 @@ public class UserController extends BaseController<UserController.UserUi,
             // 发送用户账户改变的事件
             EventUtil.sendEvent(new AccountChangedEvent(null));
             ((UserCenterUi) ui).logoutFinish();
+        }
+    }
+
+
+    private void doLogout2(final int callingId) {
+        UserUi ui = findUi(callingId);
+        if (ui instanceof UserMessageUi) {
+            // 发送用户账户改变的事件
+            EventUtil.sendEvent(new AccountChangedEvent(null));
+            ((UserMessageUi) ui).logoutFinish();
         }
     }
 
@@ -304,7 +322,8 @@ public class UserController extends BaseController<UserController.UserUi,
                         Log.e("token", token.getData().getToken());
                         AppCookie.saveAccessToken(token.getData().getToken());
                         Log.e("ACCESS", ACCESS_TOKEN);
-                    //    AppCookie.saveRefreshToken(token.getRefreshToken());
+
+                        //     AppCookie.saveRefreshToken(token.getData().getToken());
                         return mRestApiClient.setToken(token.getData().getToken())
                                 .accountService()
                                 .profile();
@@ -320,13 +339,13 @@ public class UserController extends BaseController<UserController.UserUi,
                         UserUi ui = findUi(callingId);
                         if (ui instanceof UserLoginUi) {
 
-                                ((UserLoginUi) ui).userLoginFinish();
-                                // 发送用户账户改变的事件
-                                EventUtil.sendEvent(new AccountChangedEvent(user));
+                            ((UserLoginUi) ui).userLoginFinish();
+                            // 发送用户账户改变的事件
+                            EventUtil.sendEvent(new AccountChangedEvent(user));
 
-
-                            }
+                            Log.e("rank", String.valueOf(user.getRank()));
                         }
+                    }
 
                     @Override
                     public void onFailure(ResponseError error) {
@@ -339,6 +358,9 @@ public class UserController extends BaseController<UserController.UserUi,
                     }
                 });
     }
+
+
+
     /**
      * 创建新用户
      * @param callingId
@@ -439,6 +461,130 @@ public class UserController extends BaseController<UserController.UserUi,
         //timer.cancel(); // 取消
     }
 
+
+
+    /**
+     * 重置密码第一步
+     * @param callingId
+     * @param mobile
+     */
+    private void doRendResetCode(final int callingId, String mobile) {
+        Gson gson=new Gson();
+        Map<String, String> params = new HashMap<>();
+        params.put("mobile", mobile);
+        String strEntity=gson.toJson(params);
+        RequestBody body=RequestBody.create(okhttp3.MediaType.parse("application/json; charset=utf-8"),strEntity);
+        mRestApiClient.accountService()
+                .sendResetdCode(body)
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(new RequestCallback<OrderRoom>() {
+                    @Override
+                    public void onFailure(ResponseError error) {
+                        UserUi ui = findUi(callingId);
+                        if (ui instanceof UserVerifyMobileUi) {
+                            ui.onResponseError(error);
+                        }
+                    }
+
+                    @Override
+                    public void onResponse(OrderRoom response) {
+                        UserUi ui = findUi(callingId);
+                        if (ui instanceof UserVerifyMobileUi) {
+                            ((UserVerifyMobileUi) ui).sendCodeFinish();
+                        }
+                    }
+                });
+
+    }
+
+    /**
+     * 重置密码第2个步骤:检查短信验证码
+     * @param callingId
+     * @param mobile
+     * @param code
+     */
+    private void doCheckResetCode(final int callingId, String mobile, String code){
+        Gson gson=new Gson();
+        Map<String, String> params = new HashMap<>();
+        params.put("mobile", mobile);
+        params.put("code", code);
+        String strEntity=gson.toJson(params);
+        RequestBody body=RequestBody.create(okhttp3.MediaType.parse("application/json; charset=utf-8"),strEntity);
+        mRestApiClient.accountService()
+                .verifyResetCode(body)
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(new RequestCallback<OrderRoom>() {
+                    @Override
+                    public void onResponse(OrderRoom response) {
+                        Log.e("CHECK", String.valueOf(response.getCode()));
+                        Log.e("CHECK1", response.getMessage());
+
+                        UserUi ui = findUi(callingId);
+                        if (ui instanceof UserVerifyMobileUi) {
+                            if (response.getCode() == 200) {
+                                ((UserVerifyMobileUi) ui).verifyMobileFinish();
+                            }
+                            else {
+                                ToastUtil.showLongToast("验证码输入错误请重新输入");
+                                ((UserVerifyMobileUi) ui).verifyMobileError();
+                            }
+
+
+
+                        }
+                    }
+
+                    @Override
+                    public void onFailure(ResponseError error) {
+                        Log.e("CUOWU", String.valueOf(error.getMessage()));
+                        UserUi ui = findUi(callingId);
+                        if (ui instanceof UserVerifyMobileUi) {
+                            ui.onResponseError(error);
+                        }
+                    }
+                });
+
+
+    }
+
+    /**
+     * 确认修改密码
+     * @param callingId
+     * @return
+     */
+    private void doResetCode(final int callingId, Map<String, String> params) {
+        Gson gson=new Gson();
+
+        String strEntity=gson.toJson(params);
+        Log.e("发送格式", strEntity);
+        RequestBody body=RequestBody.create(okhttp3.MediaType.parse("application/json; charset=utf-8"),strEntity);
+        Log.e("发送格式", String.valueOf(okhttp3.MediaType.parse("application/json")));
+        mRestApiClient.accountService()
+                .DoResetCode(body)
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(new RequestCallback<OrderRoom>() {
+                    @Override
+                    public void onResponse(OrderRoom response) {
+                        UserUi ui = findUi(callingId);
+                        if(ui instanceof UserSubmitInfoUi){
+                            ((UserSubmitInfoUi) ui).userRegisterFinish();
+                        }
+                    }
+
+                    @Override
+                    public void onFailure(ResponseError error) {
+                        UserUi ui = findUi(callingId);
+                        if(ui instanceof UserSubmitInfoUi){
+                            ui.onResponseError(error);
+                        }
+                    }
+                });
+    }
+
+
     /**
      * 注册的第1个步骤:发送短信验证码
      * @param callingId
@@ -457,7 +603,7 @@ public class UserController extends BaseController<UserController.UserUi,
                 .subscribe(new RequestCallback<OrderRoom>() {
                     @Override
                     public void onFailure(ResponseError error) {
-                         UserUi ui = findUi(callingId);
+                        UserUi ui = findUi(callingId);
                         if (ui instanceof UserVerifyMobileUi) {
                             ui.onResponseError(error);
                         }
@@ -497,27 +643,27 @@ public class UserController extends BaseController<UserController.UserUi,
                         Log.e("CHECK", String.valueOf(response.getCode()));
                         Log.e("CHECK1", response.getMessage());
 
-                            UserUi ui = findUi(callingId);
-                            if (ui instanceof UserVerifyMobileUi) {
-                                if (response.getCode() == 200) {
-                                    ((UserVerifyMobileUi) ui).verifyMobileFinish();
-                                }
-                                else {
-                                    ToastUtil.showLongToast("验证码输入错误请重新输入");
-                                    ((UserVerifyMobileUi) ui).verifyMobileError();
-                                }
-
-
-
+                        UserUi ui = findUi(callingId);
+                        if (ui instanceof UserVerifyMobileUi) {
+                            if (response.getCode() == 200) {
+                                ((UserVerifyMobileUi) ui).verifyMobileFinish();
                             }
+                            else {
+                                ToastUtil.showLongToast("验证码输入错误请重新输入");
+                                ((UserVerifyMobileUi) ui).verifyMobileError();
+                            }
+
+
+
                         }
+                    }
 
                     @Override
                     public void onFailure(ResponseError error) {
                         Log.e("CUOWU", String.valueOf(error.getMessage()));
                         UserUi ui = findUi(callingId);
                         if (ui instanceof UserVerifyMobileUi) {
-                             ui.onResponseError(error);
+                            ui.onResponseError(error);
                         }
                     }
                 });
@@ -548,7 +694,7 @@ public class UserController extends BaseController<UserController.UserUi,
                     public void onFailure(ResponseError error) {
                         UserUi ui = findUi(callingId);
                         if (ui instanceof UserScanUi) {
-                          ui.onResponseError(error);
+                            ui.onResponseError(error);
                         }
                     }
                     @Override
@@ -609,14 +755,22 @@ public class UserController extends BaseController<UserController.UserUi,
             public void showRegister() {
                 Display display = getDisplay();
                 if (display != null) {
-                        display.showRegister();
-                    }
+                    display.showRegister();
+                }
+            }
+
+            @Override
+            public void showResetCode() {
+                Display display = getDisplay();
+                if (display != null) {
+                    display.showresetCode();
+                }
             }
 
             @Override
             public void refreshCode() {
                 if (ui instanceof UserCodeUi) {
-                doRefreshCode(getId(ui),Constants.RoomType.ROOMTYPE_MEETING);
+                    doRefreshCode(getId(ui),Constants.RoomType.ROOMTYPE_MEETING);
                 }
             }
 
@@ -631,6 +785,11 @@ public class UserController extends BaseController<UserController.UserUi,
             @Override
             public void createUser(Map<String, String> params){
                 doCreateUser(getId(ui),params);
+            }
+
+            @Override
+            public void ResetCode(Map<String, String> params){
+                doResetCode(getId(ui),params);
             }
 
 
@@ -649,6 +808,11 @@ public class UserController extends BaseController<UserController.UserUi,
                 doLogout(getId(ui));
             }
 
+            @Override
+            public void logout2() {
+                doLogout2(getId(ui));
+            }
+
             /**
              * 发送验证码
              */
@@ -663,6 +827,23 @@ public class UserController extends BaseController<UserController.UserUi,
             public void checkCode(String mobile, String code) {
                 doCheckCode(getId(ui), mobile, code);
             }
+
+            /**
+             * 重置密码 发送验证码
+             */
+            @Override
+            public void sendResetCode(String mobile) {
+                doRendResetCode(getId(ui), mobile);
+            }
+            /**
+             * 重置密码 验证验证码
+             */
+            @Override
+            public void resetCheckCode(String mobile, String code) {
+                doCheckResetCode(getId(ui), mobile, code);
+            }
+
+
 
             @Override
             public void showCode() {
@@ -763,6 +944,17 @@ public class UserController extends BaseController<UserController.UserUi,
                     doSubmitNewToken(getId(ui),token);
                 }
             }
+
+
+
+            @Override
+            public void showUserProfile() {
+                Display display = getDisplay();
+                if (display != null) {
+                    display.UserProfile();
+                }
+            }
+
         };
     }
 
@@ -771,9 +963,14 @@ public class UserController extends BaseController<UserController.UserUi,
 
     public interface UserUiCallbacks {
 
+
+        void showUserProfile();
+
         void showLogin();
 
         void showRegister();
+
+        void showResetCode();
 
         void refreshCode();
 
@@ -783,9 +980,22 @@ public class UserController extends BaseController<UserController.UserUi,
 
         void logout();
 
+        void logout2();
+
         void sendCode(String mobile);
 
+
         void checkCode(String mobile, String code);
+
+
+
+        void sendResetCode(String mobile);
+
+        void resetCheckCode(String mobile, String code);
+
+        void ResetCode(Map<String, String> params);
+
+
 
         void showCode();
 
@@ -794,6 +1004,7 @@ public class UserController extends BaseController<UserController.UserUi,
         void submitCode();
 
         void createUser(Map<String, String> params);
+
 
         void refresh();
 
@@ -806,10 +1017,10 @@ public class UserController extends BaseController<UserController.UserUi,
         void showToken();
 
         void submitNewToken(String help_token);
-         void showZDActivity();
-         void showDNActivity();
-         void showQGActivity();
-         void showDormActivity();
+        void showZDActivity();
+        void showDNActivity();
+        void showQGActivity();
+        void showDormActivity();
     }
 
     public interface UserUi extends BaseController.Ui<UserUiCallbacks> {
@@ -834,11 +1045,20 @@ public class UserController extends BaseController<UserController.UserUi,
 
     }
 
+    public interface UserActivityUi extends UserUi {
+
+    }
+
 
 
     public interface UserCenterUi extends UserUi {
         void showUserInfo(User user);
         void uploadAvatarFinish();
+        void logoutFinish();
+    }
+
+    public interface UserMessageUi extends UserUi {
+        void showUserMessage(User user);
         void logoutFinish();
     }
 

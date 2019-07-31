@@ -36,6 +36,9 @@ public interface AccountService {
     @Headers({"Content-Type:application/json"})
     Observable<OrderRoom> sendCode(@Body RequestBody params);
 
+
+
+
     /**
      * 检查验证码
      * @param mobile
@@ -44,9 +47,26 @@ public interface AccountService {
      */
 
 
+
+
     @POST("sso/register/validcode")
     @Headers({"Content-Type:application/json"})
     Observable<OrderRoom> verifyCode(@Body RequestBody params);
+
+
+    @POST("sso/resetpwd/getcode")
+    @Headers({"Content-Type:application/json"})
+    Observable<OrderRoom> sendResetdCode(@Body RequestBody params);
+    @POST("sso/resetpwd/validcode")
+    @Headers({"Content-Type:application/json"})
+    Observable<OrderRoom> verifyResetCode(@Body RequestBody params);
+    @POST("sso/resetpwd/doreset")
+    @Headers({"Content-Type:application/json"})
+    Observable<OrderRoom> DoResetCode(@Body RequestBody params);
+
+
+
+
 
     /**
      * 创建帐号

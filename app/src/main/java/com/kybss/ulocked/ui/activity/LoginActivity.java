@@ -41,6 +41,10 @@ public class LoginActivity extends BaseActivity<UserController.UserUiCallbacks>
     @BindView(R.id.gotoreg)
     Button gotoreg;
 
+
+    @BindView(R.id.forget_code)
+    Button forget_code;
+
     @Override
     protected BaseController getController() {
         return AppContext.getContext().getMainController().getUserController();
@@ -66,11 +70,11 @@ public class LoginActivity extends BaseActivity<UserController.UserUiCallbacks>
     public void userLoginError() {
         cancelLoading();
         bt_login.setEnabled(true);
-        }
+    }
 
 
 
-    @OnClick({ R.id.bt_login,  R.id.gotoreg})
+    @OnClick({ R.id.bt_login,  R.id.gotoreg,R.id.forget_code})
     public void onClick(View view) {
         switch (view.getId()) {
 
@@ -81,6 +85,11 @@ public class LoginActivity extends BaseActivity<UserController.UserUiCallbacks>
             case R.id.gotoreg:
                 getCallbacks().showRegister();
                 break;
+
+            case R.id.forget_code:
+                getCallbacks().showResetCode();
+                break;
+
         }
     }
 

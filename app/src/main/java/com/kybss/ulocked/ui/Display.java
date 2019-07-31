@@ -31,12 +31,18 @@ import com.kybss.ulocked.ui.activity.MeetingQGActivity;
 import com.kybss.ulocked.ui.activity.MeetingZDActivity;
 import com.kybss.ulocked.ui.activity.OrderRoomActivity;
 import com.kybss.ulocked.ui.activity.RegisterActivity;
+import com.kybss.ulocked.ui.activity.ResetCodeActivity;
 import com.kybss.ulocked.ui.activity.ScanActivity;
+import com.kybss.ulocked.ui.activity.UserActivity;
+import com.kybss.ulocked.ui.fragment.ResetCodeStepOneFragment;
+import com.kybss.ulocked.ui.fragment.ResetCodeStepTwoFragment;
+import com.kybss.ulocked.ui.fragment.UserMessageFragment;
 import com.kybss.ulocked.ui.fragment.UserSubmitInfoFragment;
 import com.kybss.ulocked.ui.fragment.UserVerifyMobileFragment;
 import com.kybss.ulocked.util.EventUtil;
 import com.kybss.ulocked.util.PickedListener;
 import com.kybss.ulocked.util.RegisterStep;
+import com.kybss.ulocked.util.ResetCodeStep;
 
 import java.util.Calendar;
 import java.util.Locale;
@@ -60,6 +66,15 @@ public class Display {
         mActivity = Preconditions.checkNotNull(activity, "activity cannot be null");
         picker = new Picker();
         EventUtil.register(this);
+    }
+
+
+
+    public void UserProfile() {
+
+        Intent intent = new Intent(mActivity, UserActivity.class);
+        mActivity.startActivity(intent);
+
     }
 
     /**
@@ -204,6 +219,13 @@ public class Display {
         Intent intent = new Intent(mActivity, RegisterActivity.class);
         mActivity.startActivity(intent);
     }
+
+    public void showresetCode() {
+        Intent intent = new Intent(mActivity, ResetCodeActivity.class);
+        mActivity.startActivity(intent);
+    }
+
+
     public void showCode() {
         mActivity.getWindow().setFlags(WindowManager.LayoutParams.FLAG_FORCE_NOT_FULLSCREEN,
                 WindowManager.LayoutParams.FLAG_FORCE_NOT_FULLSCREEN);
@@ -244,6 +266,24 @@ public class Display {
                 showFragment(UserSubmitInfoFragment.create(mobile));
                 break;
         }
+    }
+
+    public void showResetCodeStep(ResetCodeStep step, String mobile) {
+        switch (step) {
+            case STEP_FIRST:
+                showFragment(new ResetCodeStepOneFragment());
+                break;
+            case STEP_SECOND:
+                showFragment(ResetCodeStepTwoFragment.create(mobile));
+                break;
+        }
+    }
+
+
+    public void showUserFragment() {
+
+        showFragment(new UserMessageFragment());
+
     }
 
     public void showActivityDetail(Meeting meeting) {
@@ -294,5 +334,5 @@ public class Display {
     }
 
 
-    }
+}
 

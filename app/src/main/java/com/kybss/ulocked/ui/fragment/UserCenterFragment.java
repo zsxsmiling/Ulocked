@@ -7,7 +7,7 @@ import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.TextView;
+
 
 import com.kybss.ulocked.R;
 import com.kybss.ulocked.base.BaseController;
@@ -18,7 +18,6 @@ import com.kybss.ulocked.controller.UserController;
 import com.kybss.ulocked.model.bean.User;
 import com.kybss.ulocked.util.ContentView;
 import com.kybss.ulocked.util.ToastUtil;
-import com.kybss.ulocked.widget.PicassoImageView;
 import com.kybss.ulocked.widget.section.SectionTextItemView;
 
 import butterknife.BindView;
@@ -29,21 +28,16 @@ import butterknife.OnClick;
  */
 @ContentView(R.layout.fragment_user_center)
 public class UserCenterFragment extends BaseFragment<UserController.UserUiCallbacks>
-    implements UserController.UserCenterUi{
+        implements UserController.UserCenterUi{
     @BindView(R.id.layout_login_before)
     View mLoginBeforeLayout;
 
     @BindView(R.id.layout_login_after)
     View mLoginAfterLayout;
 
-    @BindView(R.id.img_avatar)
-    PicassoImageView mAvatarImg;
 
-    @BindView(R.id.txt_name)
-    TextView nameTxt;
 
-    @BindView(R.id.txt_user_phone)
-    TextView mUserPhoneTxt;
+
 
     @BindView(R.id.btn_my_code)
     SectionTextItemView mManageCodeBtn;
@@ -85,9 +79,7 @@ public class UserCenterFragment extends BaseFragment<UserController.UserUiCallba
         if (user != null) {
             mLoginBeforeLayout.setVisibility(View.GONE);
             mLoginAfterLayout.setVisibility(View.VISIBLE);
-            mAvatarImg.loadProfile(user);
-            nameTxt.setText(user.getUsername());
-            mUserPhoneTxt.setText(user.getMobile());
+
         } else {
             mLoginBeforeLayout.setVisibility(View.VISIBLE);
             mLoginAfterLayout.setVisibility(View.GONE);
@@ -119,12 +111,13 @@ public class UserCenterFragment extends BaseFragment<UserController.UserUiCallba
                 getCallbacks().showLogin();
                 break;
             case R.id.layout_login_after:
-                //getCallbacks().showUserProfile();
-                ToastUtil.showToast("111");
+                getCallbacks().showUserProfile();
+           //     ToastUtil.showToast("111");
                 break;
             case R.id.img_avatar:
                 //selectUpdateAvatarMethod();
-                ToastUtil.showToast("111");
+                getCallbacks().showUserProfile();
+                //  ToastUtil.showToast("111");
                 break;
             case R.id.btn_my_code:
                 getCallbacks().showCode();
@@ -137,7 +130,7 @@ public class UserCenterFragment extends BaseFragment<UserController.UserUiCallba
                 getCallbacks().showToken();
                 break;
             case R.id.btn_my_other:
-                ToastUtil.showToast("111");
+            //    ToastUtil.showToast("111");
                 break;
         }
     }

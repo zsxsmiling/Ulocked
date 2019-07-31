@@ -6,11 +6,20 @@ public class User {
 
     @SerializedName("id")
     long id;
-    @SerializedName("status")
+    @SerializedName("rank")
     int rank;
+
+    @SerializedName("stuid")
+    String usernumber;
+
+
+
+    @SerializedName("dormInfo")
+    String userdorm;
 
     @SerializedName("username")
     String username;
+
 
     @SerializedName("nickname")
     String nickname;
@@ -120,6 +129,23 @@ public class User {
 
     public void setLastAddressId(long lastAddressId) {
         this.lastAddressId = lastAddressId;
+    }
+
+
+    public String getUsernumber() {
+        return usernumber;
+    }
+
+    public void setUsernumber(String usernumber) {
+        this.usernumber = usernumber;
+    }
+
+    public String getUserdorm() {
+        return userdorm;
+    }
+
+    public void setUserdorm(String userdorm) {
+        this.userdorm = userdorm;
     }
 
 

@@ -190,6 +190,7 @@
     <string name="toast_error_null_meeting">Object为空</string>
     <string name="toast_success_order_room">预订成功</string>
     <string name="toast_success_create_user">用户注册成功</string>
+    <string name="toast_success_reset_code">用户修改密码成功</string>
 
     <!-- 输入框的提示文本 -->
     <string name="hint_edit_start_date">开始日期</string>
@@ -279,6 +280,13 @@
     <string name="status_decode_deny">未通过</string>
     <string name="status_decode_invalid">已过期</string>
     <string name="status_decode_other">其他</string>
+
+    <!-- User Message 个人信息 -->
+    <string name="user_name">昵称</string>
+    <string name="user_iphone">手机号</string>
+    <string name="user_house">宿舍号</string>
+    <string name="user_more">学号</string>
+
 
     <style name="Widget.LazyOrder.EditText" parent="Widget.AppCompat.EditText">
         <item name="android:textSize">16sp</item>
