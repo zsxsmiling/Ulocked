@@ -85,11 +85,11 @@ public class MeetingActivitesItemViewHolder extends BaseViewHolder<Meeting> {
         mActivityTimeTxt.setText(meeting.getStart_time());
         mActivityTimeTxt.setText(DateUtil.getStampDate(meeting.getStart_time())
                 +"  "+DateUtil.getStampTime(meeting.getStart_time()));
-        for(int i=0;i<meeting.getResults().size();i++){
+/*        for(int i=0;i<meeting.getResults().size();i++){
         mActivityLocationTxt.setText(StringUtil.descriptionToshow(meeting.getResults().get(i).getDescription()));
         }
-        if(meeting.getResults().size()==0) mActivityLocationTxt.setText("此门暂未使用");
-
+        if(meeting.getResults().size()==0) mActivityLocationTxt.setText("此门暂未使用");*/
+        mActivityLocationTxt.setText(meeting.getDescription());
         mDoorStateTxt.setText(StringUtil.decodeStatus(meeting.getStatus()));
 /*        if(!meeting.getStatus().equals("1")){
             mSpinner.setVisibility(View.INVISIBLE);
